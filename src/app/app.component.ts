@@ -81,6 +81,25 @@ export class AppComponent implements OnInit {
     );
   }
 
+  removeRow(index: number): void {
+    this.form.removeAt(index);
+  }
+
+  saveTodo(): void{
+    this.todoList.push();
+  }
+
+  onSubmit(): void {
+    this.todoList = this.form.value.map((val: {label: string, at: string, finished: boolean}) => {
+      return{
+        label: val.label,
+        at: new Date(val.at),
+        finished: val.finished,
+      }
+    });
+    console.log(this.todoList);
+  }
+
   public getControl(formGroup: AbstractControl, key: string): FormControl
   {
     if (!(formGroup instanceof FormGroup)) {

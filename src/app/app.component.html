@@ -1,8 +1,9 @@
 <div class="mt-5 d-flex align-center justify-content-center w-100 text-center">
-  <form>
+  <form (submit)="onSubmit()">
     <h1 class="h3 mb-3 fw-normal">TODO List</h1>
 
-    <div *ngFor="let todo of form.controls" class="input-group mb-3">
+    <div *ngFor="let todo of form.controls; let i=index" class="input-group mb-3"
+    >
       <div class="input-group-text">
         <input [formControl]="getControl(todo, 'finished')"
                class="form-check-input mt-0"
@@ -23,8 +24,10 @@
              id="something-at"
              placeholder="Date to do"
              aria-label="Date to do">
+      <button (click)="removeRow(i)" class="btn btn-danger" type="button">X</button>
     </div>
 
-    <button (click)="addTodo()" class="w-100 btn btn-lg btn-primary" type="submit">Add TODO</button>
+    <button (click)="addTodo()" class="w-100 btn btn-lg btn-primary" type="button">Add ToDo</button>
+    <button class="w-100 btn btn-lg btn-secondary mt-3" type="submit">Save ToDo</button>
   </form>
 </div>
